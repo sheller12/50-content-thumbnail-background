@@ -273,10 +273,8 @@ if(document.getElementById("content")){
       squareName.classList.add("square-name");
       const squareIndex = document.createElement("span");
       squareIndex.innerText = " ("+(contents.indexOf(content)+1)+")";
-      const squareImg = document.createElement("img");
-      squareImg.src = "../assets/blacksquare.jpg" ;
-      squareImg.width = 150;
-      squareImg.height = 150;
+      const squareImg = document.createElement("div");
+      squareImg.style = "background-color: #121212; width: 150px; height: 150px;"
       squareImg.addEventListener("click", () => contentClicked(content));
       squareName.appendChild(squareIndex);
       squareCard.appendChild(squareName);
