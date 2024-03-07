@@ -95,6 +95,9 @@ a{
 #content .square-card{
   margin: 10px;
 }
-#content .square-box img{
+#content .square-box .black-square{
   cursor: pointer;
+  background-color: #121212;
+  width: 150px;
+  height: 150px;
 }

@@ -274,7 +274,7 @@ if(document.getElementById("content")){
       const squareIndex = document.createElement("span");
       squareIndex.innerText = " ("+(contents.indexOf(content)+1)+")";
       const squareImg = document.createElement("div");
-      squareImg.style = "background-color: #121212; width: 150px; height: 150px;"
+      squareImg.classList.add("black-square");
       squareImg.addEventListener("click", () => contentClicked(content));
       squareName.appendChild(squareIndex);
       squareCard.appendChild(squareName);
