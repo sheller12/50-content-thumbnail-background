@@ -1,0 +1,97 @@
+body{
+  font-family:"Roboto","Noto Serif JP";
+  margin: 0px;
+}
+hr{
+  background-color: lightgray;
+  height: 1px;
+  border-width: 0;
+}
+.dark-theme hr{
+  background-color: rgb(78, 78, 78);
+}
+a{
+  color: #1976d2;
+}
+
+.light-theme{
+  background-color: white;
+  --bg-color: white;
+  --accent-color: #FF91A4;
+  color: #2b2b2b
+}
+.dark-theme{
+  background-color: #121212;
+  --bg-color: #121212;
+  --accent-color: #ffa6b5;
+  --sub-accent-color: #B2FF59;
+  color: white;
+}
+
+
+#home{
+  text-align: center;
+}
+#home h2{
+  color: var(--accent-color);
+  font-weight: lighter;
+  font-size: x-large;
+  line-height: 1em;
+}
+#home p{
+  line-height: 1.2em;
+  font-size: 12px;
+}
+#home .top{
+  color: var(--accent-color);
+}
+#home .maps{
+  background-color: #121212;
+  padding: 20px;
+}
+#home .maps img{
+  margin: 5px;
+}
+#home .warn{
+  margin: auto;
+  width: 300px;
+  text-align: left;
+}
+
+
+#content{
+  margin: 5%;
+}
+#content h1{
+  text-align: center;
+  color: var(--accent-color);
+  margin-top: 60px;
+}
+#content h2{
+  color: var(--accent-color);
+  font-size: 18px;
+  line-height: 0px;
+  font-weight: lighter;
+}
+#content .square-name{
+  color: #C8E6C9;
+}
+#content .square-name span{
+  font-size: 10px;
+}
+#content .floor-box{
+  margin-top: 50px;
+}
+#content .square-box{
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+#content .square-box::-webkit-scrollbar{
+  display: none;
+}
+#content .square-card{
+  margin: 10px;
+}
