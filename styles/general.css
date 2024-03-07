@@ -95,3 +95,6 @@ a{
 #content .square-card{
   margin: 10px;
 }
+#content .square-box img{
+  cursor: pointer;
+}
