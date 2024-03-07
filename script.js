@@ -240,27 +240,20 @@ if(document.getElementById("content")){
     item.classList.add("content-item");
     item.addEventListener("mousedown", () => contentClicked(content));
     contentsList.appendChild(item);
-  })
-  // function search(){
-  //   var input, filter, ul, li, a, i, txtValue;
-  //   input = document.getElementById('search-box');
-  //   filter = input.value.toUpperCase();
-  //   ul = document.getElementById("myUL");
-  //   li = ul.getElementsByTagName('li');
+  });
+  function search(){
+    const contentsList = document.getElementById("contents-list");
+    const items = contentsList.children;
+    const phrase = document.getElementById("search-box").value;
+    Array.from(items).forEach((item) => {
+      console.log(item.innerText);
+      if(item.innerText.indexOf(phrase)>=0) item.style.display = "block";
+      else item.style.display = "none";
+    })
+    console.log(result);
+  }
 
-  //   // Loop through all list items, and hide those who don't match the search query
-  //   for (i = 0; i < li.length; i++) {
-  //     a = li[i].getElementsByTagName("a")[0];
-  //     txtValue = a.textContent || a.innerText;
-  //     if (txtValue.toUpperCase().indexOf(filter) > -1) {
-  //       li[i].style.display = "";
-  //     } else {
-  //       li[i].style.display = "none";
-  //     }
-  //   }
-  // }
-
-  //ブラックスクエア
+  //ブラックスクエアの設置
   const squareArea = document.getElementById("square-area");
   for(let i=1; i<=3; i++){
     const floorBox = document.createElement("div");
