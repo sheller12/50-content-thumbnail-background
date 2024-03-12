@@ -53,7 +53,7 @@
       const contract = new ethers.Contract(contractAddress, contractABI, provider);
       const squareArea = document.getElementById('square-area');
 
-      for (let tokenId = 1; tokenId <= 200; tokenId += 10) {
+      for (let tokenId = 0; tokenId <= 200; tokenId += 50) {
         const container = document.createElement('div');
         container.style.marginBottom = '20px'; // コンテナのマージン設定
 
