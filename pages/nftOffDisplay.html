@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>フルオンチェーンNFTの表示</title>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+</head>
+
+<body>
+    <div id="square-area"></div>
+    <style>
+        #square-area {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: left;
+        }
+    </style>
+    <script>
+        async function loadABI() {
+            const response = await fetch('contractABI.json'); // ABIが格納されたJSONファイル
+            const data = await response.json();
+            return data;
+        }
+
+        async function displayNFT() {
+            const contractABI = await loadABI();
+            const provider = new ethers.providers.JsonRpcProvider('https://sepolia.infura.io/v3/166fa3643f7f44c48dbfcf09ebc2ff46');
+            const contractAddress = '0x8EfCeC2AdEb2B2a904B70CBd0F82380CC8e02B15';
+            const contract = new ethers.Contract(contractAddress, contractABI, provider);
+            const squareArea = document.getElementById('square-area');
+
+            for (let tokenId = 0; tokenId <= 250; tokenId += 50) {
+                const container = document.createElement('div');
+                container.classList.add('nft-container');
+                let displayText = ''; // 表示するテキスト
+
+                try {
+                    const ownerAddress = await contract.ownerOf(tokenId);
+                    //displayText = `Owner: ${ownerAddress}`; // 所有者のアドレスをテキストにセット
+                    displayText = `Owned`; // 所有者のアドレスをテキストにセット
+                } catch (error) {
+                    // ownerOfでエラーが発生した場合
+                    try {
+                        const isMintable = await contract.mintable(tokenId);
+                        displayText = isMintable ? 'Mintable' : 'Burned';
+                    } catch (error) {
+                        console.error(`Error checking mintable status for token ID ${tokenId}: `, error);
+                        displayText = 'Error'; // エラーが発生した場合のテキスト
+                    }
+                }
+
+                // statusDivの作成
+                const statusDiv = document.createElement('div');
+                statusDiv.textContent = displayText;
+                statusDiv.style.width = '150px';
+                statusDiv.style.height = '150px';
+                statusDiv.style.backgroundColor = '#121212';
+                statusDiv.style.color = '#fff';
+                statusDiv.style.display = 'flex';
+                statusDiv.style.justifyContent = 'center';
+                statusDiv.style.alignItems = 'center';
+                statusDiv.style.border = '1px solid #ddd';
+                container.appendChild(statusDiv);
+
+                squareArea.appendChild(container);
+            }
+        }
+
+        window.addEventListener('load', displayNFT);
+
+
+        window.addEventListener('load', displayNFT);
+    </script>
+</body>
+
+</html>

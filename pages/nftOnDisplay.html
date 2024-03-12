@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>フルオンチェーンNFTの表示</title>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+  <style>
+    #square-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: left;
+    }
+    .nft-container {
+      border: 1px solid #ddd;
+      padding: 0; /* パディングを削除 */
+      width: 150px;
+      position: relative; /* 追加：コンテナのポジショニングを相対に設定 */
+    }
+    .nft-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .owner-address {
+      position: absolute; /* 追加：絶対位置指定 */
+      bottom: 0; /* 下部に配置 */
+      left: 0;
+      width: 100%; /* コンテナの幅に合わせる */
+      background-color: rgba(0, 0, 0, 0.6); /* 背景を暗く半透明に */
+      color: white; /* 文字色を白に */
+      font-size: 0.8em; /* 文字サイズを小さく設定 */
+      text-align: center; /* 中央揃え */
+      padding: 4px 0; /* 上下のパディング */
+    }
+  </style>
+</head>
+
+<body>
+  <div id="square-area"></div>
+
+  <script>
+    async function loadABI() {
+      const response = await fetch('contractABI.json'); // ABIが格納されたJSONファイル
+      const data = await response.json();
+      return data;
+    }
+
+    async function displayNFT() {
+      const contractABI = await loadABI();
+      const provider = new ethers.providers.JsonRpcProvider('https://sepolia.infura.io/v3/166fa3643f7f44c48dbfcf09ebc2ff46');
+      const contractAddress = '0x8EfCeC2AdEb2B2a904B70CBd0F82380CC8e02B15';
+      const contract = new ethers.Contract(contractAddress, contractABI, provider);
+      const squareArea = document.getElementById('square-area');
+
+      for (let tokenId = 1; tokenId <= 200; tokenId += 10) {
+        const container = document.createElement('div');
+        container.style.marginBottom = '20px'; // コンテナのマージン設定
+
+        let ownerAddress = null;
+        try {
+          ownerAddress = await contract.ownerOf(tokenId);
+        } catch (error) {
+          // ownerOfでエラーが発生した場合
+        }
+
+        let displayText = ''; // 表示するテキスト
+        if (!ownerAddress) {
+          try {
+            const isMintable = await contract.mintable(tokenId);
+            displayText = isMintable ? 'Mintable' : 'Burned';
+            console.log(displayText);
+          } catch (error) {
+            console.error(`Error checking mintable status for token ID ${tokenId}: `, error);
+          }
+          const statusDiv = document.createElement('div');
+          statusDiv.textContent = displayText;
+          statusDiv.style.width = '150px';
+          statusDiv.style.height = '150px';
+          statusDiv.style.backgroundColor = '#121212';
+          statusDiv.style.color = '#fff';
+          statusDiv.style.display = 'flex';
+          statusDiv.style.justifyContent = 'center';
+          statusDiv.style.alignItems = 'center';
+          statusDiv.style.border = '1px solid #ddd';
+          container.appendChild(statusDiv);
+        } else {
+          // 画像と所有者のアドレスを表示
+          try {
+            const tokenURI = await contract.tokenURI(tokenId);
+            const response = await fetch(tokenURI);
+            const metadata = await response.json();
+            const imageUri = metadata.image;
+
+            const img = document.createElement('img');
+            img.src = imageUri;
+            container.appendChild(img);
+
+            const ownerDiv = document.createElement('div');
+            ownerDiv.textContent = `Owner: ${ownerAddress}`;
+            ownerDiv.classList.add('owner-address');
+            container.appendChild(ownerDiv);
+          } catch (error) {
+            console.error(`Error fetching data for token ID ${tokenId}: `, error);
+          }
+        }
+        squareArea.appendChild(container);
+      }
+    }
+
+    window.addEventListener('load', displayNFT);
+  </script>
+</body>
+
+</html>
