@@ -1,39 +1,51 @@
-<!-- mint.html -->
 <!DOCTYPE html>
 <html>
-<head>
-    <title>NFT Mint Page</title>
-    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
-</head>
-<body>
-    <h1>Mint Your NFT</h1>
-    <button id="mintButton">Mint NFT</button>
+    <head>
+        <title>NFT Mint Page</title>
+        <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+    </head>
 
-    <script>
-        async function mintNFT(tokenId, contractAddress, abiUrl) {
-            const response = await fetch(abiUrl);
-            const contractABI = await response.json();
-    
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-            await provider.send("eth_requestAccounts", []); // ユーザーに接続を要求
-            const signer = provider.getSigner();
-            const contract = new ethers.Contract(contractAddress, contractABI, signer);
-    
-            // ミント処理（具体的な関数名や引数はコントラクトによって異なります）
-            await contract.nftMint(tokenId);
-        }
-    
-        window.addEventListener('load', () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const tokenId = urlParams.get('tokenId');
-            const contractAddress = urlParams.get('contractAddress');
-            const abiUrl = decodeURIComponent(urlParams.get('abiUrl'));
-    
-            document.getElementById('mintButton').addEventListener('click', () => {
-                mintNFT(tokenId, contractAddress, abiUrl);
+    <body>
+        <h1>Mint Your NFT</h1>
+        <button id="mintButton">Mint NFT</button>
+
+        <script>
+            async function mintNFT(tokenId, contractAddress, abiUrl) {
+                const response = await fetch(abiUrl);
+                const contractABI = await response.json();
+
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []); // ユーザーに接続を要求
+                const signer = provider.getSigner();
+                const contract = new ethers.Contract(contractAddress, contractABI, signer);
+
+                // ミント処理（具体的な関数名や引数はコントラクトによって異なります）
+                await contract.nftMint(tokenId);
+            }
+
+            window.addEventListener('load', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const tokenId = urlParams.get('tokenId');
+                const contractAddress = urlParams.get('contractAddress');
+                const abiUrl = decodeURIComponent(urlParams.get('abiUrl'));
+                
+                document.getElementById('mintButton').addEventListener('click', () => {
+                    mintNFT(tokenId, contractAddress, abiUrl);
+                });
+
+                const statusDiv = document.createElement('div');
+                statusDiv.textContent = ` ${tokenId % 50 == 0 ? Math.floor(tokenId / 50) : Math.floor(tokenId / 50) + 1} - ${tokenId % 50 == 0 ? 50 : tokenId % 50}`;
+                statusDiv.style.width = '150px';
+                statusDiv.style.height = '150px';
+                statusDiv.style.backgroundColor = '#121212';
+                statusDiv.style.color = '#fff';
+                statusDiv.style.display = 'flex';
+                statusDiv.style.justifyContent = 'center';
+                statusDiv.style.alignItems = 'center';
+                statusDiv.style.border = '1px solid #ddd';
+                document.body.insertBefore(statusDiv, mintButton);
+
             });
-        });
-    </script>
-    
-</body>
+        </script>
+    </body>
 </html>
