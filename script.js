@@ -238,19 +238,24 @@ if(document.getElementById("content")){
     const item = document.createElement("p");
     item.innerText = content.name+":"+content.title;
     item.classList.add("content-item");
-    item.addEventListener("mousedown", () => contentClicked(content));
+    item.addEventListener("mousedown", () => {
+      contentClicked(content);
+      console.log(contentsList.scrollTop);
+    });
     contentsList.appendChild(item);
+  });
+  const searchBox = document.getElementById("search-box");
+  searchBox.addEventListener("focus", () => {
+    contentsList.scrollTop = 0;
   });
   function search(){
     const contentsList = document.getElementById("contents-list");
     const items = contentsList.children;
     const phrase = document.getElementById("search-box").value;
     Array.from(items).forEach((item) => {
-      console.log(item.innerText);
       if(item.innerText.indexOf(phrase)>=0) item.style.display = "block";
       else item.style.display = "none";
     })
-    console.log(result);
   }
 
   //ブラックスクエアの設置

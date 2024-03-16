@@ -450,7 +450,7 @@
   margin-left: 5px;
   caret-color: var(--sub-accent-color);
 }
-#search #bar{
+#search #search-bar{
   border-bottom: 1px solid white;
 }
 #loupe {
@@ -508,10 +508,10 @@
   background-color: rgb(65, 65, 65);
   cursor: pointer;
 }
-#search #bar:has(input:focus) {
+#search:has(input:focus) #search-bar{
   border-bottom: 1px solid var(--sub-accent-color);
 }
-#search #bar:has(input:focus) #loupe{
+#search:has(input:focus) #loupe{
   color: var(--sub-accent-color);
 }
 #search:has(input:focus) #contents-list{
