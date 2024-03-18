@@ -234,71 +234,46 @@
   transform: rotateY(0.1deg) rotateX(0.1deg);
 }
 
-.slide,
-.slide::after,
-.slide:before {
+.slider div {
   display: block;
   width: inherit;
   height: inherit;
   position: absolute;
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   background-size: cover;
   background-position: center;
 }
 
-.slide.x {
-  -webkit-transform: rotateY(89.9deg);
-  transform: rotateY(89.9deg);
-}
-
-.slide.x::after {
-  content: '';
+.slider .up {
   background-image: url('../assets/korokoro/korokoro2.png');
-  -webkit-transform: translateZ(65px);
-  transform: translateZ(65px);
+  -webkit-transform: rotateY(89.9deg) translateZ(65px);
+  transform: rotateY(89.9deg) translateZ(65px);
 }
 
-.slide.x::before {
-  content: '';
+.slider .bottom {
   background-image: url('../assets/korokoro/korokoro3.png');
-  -webkit-transform: translateZ(-65px);
-  transform: translateZ(-65px);
+  -webkit-transform: rotateY(89.9deg) translateZ(-65px);
+  transform: rotateY(89.9deg) translateZ(-65px);
 }
 
-.slide.y {
-  -webkit-transform: rotateX(89.9deg);
-  transform: rotateX(89.9deg);
-}
-
-.slide.y::after {
-  content: '';
+.slider .left {
   background-image: url('../assets/korokoro/korokoro4.png');
-  -webkit-transform: translateZ(65px) scale(-1);
-  transform: translateZ(65px) scale(-1);
+  -webkit-transform: rotateX(-89.9deg) translateZ(-65px);
+  transform: rotateX(-89.9deg) translateZ(-65px);
 }
 
-.slide.y::before {
-  content: '';
+.slider .right {
   background-image: url('../assets/korokoro/korokoro5.png');
-  -webkit-transform: translateZ(-65px);
-  transform: translateZ(-65px);
+  -webkit-transform: rotateX(89.9deg) translateZ(-65px);
+  transform: rotateX(89.9deg) translateZ(-65px);
 }
 
-.slide.z {
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-}
-
-.slide.z::after {
-  content: '';
+.slider .front {
   background-image: url('../assets/korokoro/korokoro6.png');
   -webkit-transform: translateZ(65px);
   transform: translateZ(65px);
 }
 
-.slide.z::before {
-  content: '';
+.slider .back {
   background-image: url('../assets/korokoro/korokoro7.png');
   -webkit-transform: translateZ(-65px);
   transform: translateZ(-65px);
