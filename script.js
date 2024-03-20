@@ -1,25 +1,26 @@
 
+const currentPath = location.pathname.slice(location.pathname.lastIndexOf("/")); //現在のpath
+
 //components
 fetch("../components/hamburger.html")
   .then((response) => response.text())
   .then((data) => document.querySelector("#hamburger").innerHTML = data)
   .then(()=>{
     const menu_list = [
-      {name:"home", path:"../"},
-      {name:"content list", path:"../pages/content.html"},
-      {name:"text", path:"../pages/text.html"},
-      {name:"minted", path:"../pages/minted.html"},
-      {name:"understand NFT", path:"../pages/understand.html"},
+      {name:"home",           path:"../",                      include:["/", "/index.html"]},
+      {name:"content list",   path:"../pages/content.html",    include:["/content.html", "/content_selected.html"]},
+      {name:"text",           path:"../pages/text.html",       include:["text.html"]},
+      {name:"minted",         path:"../pages/minted.html",     include:["minted.html"]},
+      {name:"understand NFT", path:"../pages/understand.html", include:["understand.html"]},
     ]
     const menu_elm = document.getElementById("menu_elm");
-    const currentPath = location.pathname.slice(location.pathname.lastIndexOf("/"));
     menu_list.forEach((menu)=>{
       const li = document.createElement("li");
       const button = document.createElement("button");
       button.innerText = menu.name;
-      button.setAttribute("onclick", "location.href='"+menu.path+"'");
-      const thisPath = menu.path.slice(menu.path.lastIndexOf("/"));
-      if(thisPath === currentPath) button.classList.add("now");
+      button.setAttribute("onclick", `location.href="${menu.path}"`);
+      const match = (path)=>path===currentPath;
+      if(menu.include.some(match)) button.classList.add("now");
       li.appendChild(button);
       menu_elm.appendChild(li);
     });
@@ -231,7 +232,7 @@ const contents =[
     "floor":3,
   }
 ];
-if(document.getElementById("content")){
+if(currentPath==="/content.html"){
   //検索欄
   const contentsList = document.getElementById("contents-list");
   contents.forEach((content) => {
@@ -289,8 +290,23 @@ if(document.getElementById("content")){
     floorBox.appendChild(squareBox);
     squareArea.appendChild(floorBox);
   }
+
+  //コンテンツ選択時の関数
+  function contentClicked(content){
+    window.location.href = `../pages/content_selected.html?name=${content.name}&title=${content.title}`
+  }
 }
-//コンテンツ選択時の関数
-function contentClicked(content){
-  console.log("clicked: "+content.name);
+
+
+//content_selected page
+if(currentPath==="/content_selected.html"){
+  const content_params = new URLSearchParams(window.location.search);
+  const name = document.getElementById("selected-content-name");
+  name.innerText = content_params.get("name");
+  const title = document.getElementById("selected-content-title");
+  title.innerText = `『${content_params.get("title")}』`;
+
+  function toMintPage(){
+    window.location.href = `../pages/mint.html${window.location.search}`;
+  }
 }

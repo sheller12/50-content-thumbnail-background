@@ -486,10 +486,10 @@
   margin: 0px;
   padding-left: 20px;
   line-height: 40px;
+  cursor: pointer;
 }
 #search .content-item:hover{
   background-color: rgb(65, 65, 65);
-  cursor: pointer;
 }
 #search:has(input:focus) #search-bar{
   border-bottom: 1px solid var(--sub-accent-color);
