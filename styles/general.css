@@ -106,11 +106,11 @@ a{
 #content_selected{
   text-align: center;
 }
-#content_selected h3{
+#content_selected #selected-content-name{
   color: var(--accent-color);
   margin-bottom: 0px;
 }
-#content_selected h2{
+#content_selected #selected-content-title{
   margin-top: 0px;
 }
 #content_selected .black-square{
