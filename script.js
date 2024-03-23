@@ -7,7 +7,7 @@ fetch("../components/hamburger.html")
   .then((data) => document.querySelector("#hamburger").innerHTML = data)
   .then(()=>{
     const menu_list = [
-      {name:"home",           path:"../",                      include:["/", "/index.html"]},
+      {name:"home",           path:"../pages/home.html",       include:["/", "/home.html", "/index.html"]},
       {name:"content list",   path:"../pages/content.html",    include:["/content.html", "/content_selected.html"]},
       {name:"text",           path:"../pages/text.html",       include:["text.html"]},
       {name:"minted",         path:"../pages/minted.html",     include:["minted.html"]},

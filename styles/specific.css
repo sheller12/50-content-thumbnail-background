@@ -500,3 +500,48 @@
 #search:has(input:focus) #contents-list{
   display: block;
 }
+
+
+
+#first-statement{
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  position: fixed;
+  margin: 50vh 50vw;
+  transform: translate(-50%, -50%);
+  width: 75vw;
+  padding: 15px 20px 5px;
+  z-index: 100;
+  background-color: #121212;
+  color: whitesmoke;
+  text-align: left;
+  letter-spacing: 1px;
+}
+#first-statement .hamburger{
+  font-size: 30px;
+  vertical-align: bottom;
+}
+#first-statement #first-statement-check{
+  display: none;
+}
+#first-statement #first-statement-close{
+  text-align: center;
+  margin-top: 20px;
+  text-decoration: underline;
+}
+#first-statement #first-statement-close label{
+  cursor: pointer;
+}
+#first-statement-background:has(#first-statement-check:not(:checked)){
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0px;
+  z-index: 10;
+  background-color: hsl(0 0% 0% / 70%);
+}
+body:has(#first-statement-check:not(:checked)){
+  position: fixed;
+}
+#first-statement:has(#first-statement-check:checked){
+  display: none;
+}
