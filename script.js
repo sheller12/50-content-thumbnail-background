@@ -1,5 +1,5 @@
 
-const currentPath = location.pathname.slice(location.pathname.lastIndexOf("/")); //現在のpath
+const currentPath = location.pathname.slice(location.pathname.lastIndexOf("/")+1); //現在のpath
 
 //components
 fetch("./components/hamburger.html")
@@ -7,11 +7,11 @@ fetch("./components/hamburger.html")
   .then((data) => document.querySelector("#hamburger").innerHTML = data)
   .then(()=>{
     const menu_list = [
-      {name:"home",           path:"./home.html",       include:["/", "/home.html", "/index.html"]},
-      {name:"content list",   path:"./content.html",    include:["/content.html", "/content_selected.html"]},
-      {name:"text",           path:"./text.html",       include:["text.html"]},
-      {name:"minted",         path:"./minted.html",     include:["minted.html"]},
-      {name:"understand NFT", path:"./understand.html", include:["understand.html"]},
+      {name:"text",         path:"./text",            include:["text.html"]},
+      {name:"content list", path:"./",                include:["", "index.html", "content_selected.html"]},
+      {name:"minted",       path:"./minted.html",     include:["minted.html"]},
+      {name:"exhibition",   path:"./exhibition.html", include:["exhibition.html"]},
+      {name:"home",         path:"./home.html",       include:["home.html"]},
     ]
     const menu_elm = document.getElementById("menu_elm");
     menu_list.forEach((menu)=>{
