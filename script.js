@@ -232,7 +232,7 @@ const contents =[
     "floor":3,
   }
 ];
-if(currentPath===""){
+if(currentPath==="" || currentPath==="index.html"){
   //ブラックスクエアの設置
   const squareArea = document.getElementById("square-area");
   for(let i=1; i<=3; i++){
@@ -242,7 +242,7 @@ if(currentPath===""){
     floorContents.forEach((content)=>{
       const squareImg = document.createElement("div");
       squareImg.classList.add("black-square");
-      const contentIndex = (contents.indexOf(content)+1).toString().padStart(3, "0");
+      const contentIndex = (contents.indexOf(content)+1).toString().padStart(4, "0");
       squareImg.addEventListener("click", () => window.location.href = `./content_selected.html?index=${contentIndex}`);
       floorBox.appendChild(squareImg);
     })
