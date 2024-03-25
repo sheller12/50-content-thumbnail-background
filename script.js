@@ -2,16 +2,16 @@
 const currentPath = location.pathname.slice(location.pathname.lastIndexOf("/")); //現在のpath
 
 //components
-fetch("../components/hamburger.html")
+fetch("./components/hamburger.html")
   .then((response) => response.text())
   .then((data) => document.querySelector("#hamburger").innerHTML = data)
   .then(()=>{
     const menu_list = [
-      {name:"home",           path:"../pages/home.html",       include:["/", "/home.html", "/index.html"]},
-      {name:"content list",   path:"../pages/content.html",    include:["/content.html", "/content_selected.html"]},
-      {name:"text",           path:"../pages/text.html",       include:["text.html"]},
-      {name:"minted",         path:"../pages/minted.html",     include:["minted.html"]},
-      {name:"understand NFT", path:"../pages/understand.html", include:["understand.html"]},
+      {name:"home",           path:"./home.html",       include:["/", "/home.html", "/index.html"]},
+      {name:"content list",   path:"./content.html",    include:["/content.html", "/content_selected.html"]},
+      {name:"text",           path:"./text.html",       include:["text.html"]},
+      {name:"minted",         path:"./minted.html",     include:["minted.html"]},
+      {name:"understand NFT", path:"./understand.html", include:["understand.html"]},
     ]
     const menu_elm = document.getElementById("menu_elm");
     menu_list.forEach((menu)=>{
@@ -293,7 +293,7 @@ if(currentPath==="/content.html"){
 
   //コンテンツ選択時の関数
   function contentClicked(content){
-    window.location.href = `../pages/content_selected.html?name=${content.name}&title=${content.title}`
+    window.location.href = `./content_selected.html?name=${content.name}&title=${content.title}`
   }
 }
 
@@ -307,6 +307,6 @@ if(currentPath==="/content_selected.html"){
   title.innerText = `『${content_params.get("title")}』`;
 
   function toMintPage(){
-    window.location.href = `../pages/mint.html${window.location.search}`;
+    window.location.href = `./mint.html${window.location.search}`;
   }
 }
