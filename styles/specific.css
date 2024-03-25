@@ -22,7 +22,7 @@
   position: relative;
   width: 25px;
   height: 3px;
-  background-color: gray;
+  background-color: var(--normal-color);
 }
 #hamburger-lines span:nth-child(1){
   top: 10px;
@@ -41,7 +41,6 @@
   z-index: 90;
   width: 100vw;
   height: 100vh;
-  background-color: hsl(0 0% 10% / 50%);
 }
 #hamburger-menu {
   position: fixed;
@@ -50,8 +49,8 @@
   z-index: 100;
   width: 250px;
   height: 100vh;
-  background-color: white;
-  color: var(--accent-color);
+  background-color: #17181A;
+  color: var(--normal-color);
   transition: left 0.2s;
 }
 #hamburger-menu h3{
@@ -67,7 +66,7 @@
   list-style: none;
 }
 #hamburger-menu li button{
-  color: var(--accent-color);
+  color: var(--normal-color);
   padding-left: 60px;
   position: relative;
   left: 2%;
@@ -77,33 +76,14 @@
   margin-bottom: 3px;
   font-size: 12px;
   font-weight: lighter;
-  background-color: white;
+  background-color: transparent;
   border-radius: 5px;
   border: none;
   outline: none;
   box-shadow: none;
 }
 #hamburger-menu li button:hover{
-  background-color: whitesmoke;
-}
-#hamburger-menu li button.now{
-  background-color: rgb(251, 237, 239);
-}
-
-.dark-theme #hamburger-lines span{
-  background-color: whitesmoke;
-}
-.dark-theme #hamburger-menu{
-  background-color: rgb(51, 51, 51);
-}
-.dark-theme #hamburger-menu li button{
-  background-color: transparent;
-}
-.dark-theme #hamburger-menu li button:hover{
-  background-color: rgb(65, 65, 65);
-}
-.dark-theme #hamburger-menu li button.now{
-  background-color: rgba(216, 174, 180, 0.482);
+  background-color: #202020;
 }
 
 
