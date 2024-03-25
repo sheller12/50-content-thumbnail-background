@@ -32,12 +32,6 @@ a{
 #home{
   text-align: center;
 }
-#home h2{
-  color: var(--accent-color);
-  font-weight: lighter;
-  font-size: x-large;
-  line-height: 1em;
-}
 #home p{
   line-height: 1.2em;
   font-size: 12px;
@@ -45,61 +39,30 @@ a{
 #home .top{
   color: var(--accent-color);
 }
-#home .maps{
-  background-color: #121212;
-  padding: 20px;
-}
-#home .maps img{
-  margin: 5px;
-}
-#home .warn{
-  margin: auto;
-  width: 300px;
-  text-align: left;
-}
 
 
 #content{
-  margin: 5%;
-}
-#content h1{
-  text-align: center;
-  color: var(--accent-color);
-  margin-top: 60px;
-}
-#content h2{
-  color: var(--accent-color);
-  font-size: 18px;
-  line-height: 0px;
-  font-weight: lighter;
-}
-#content .square-name{
-  color: #C8E6C9;
-}
-#content .square-name span{
-  font-size: 10px;
+  margin: 100px 0% 5%;
 }
 #content .floor-box{
-  margin-top: 50px;
-}
-#content .square-box{
+  margin-top: 20px;
   width: 100%;
   overflow: scroll;
-  display: flex;
+  white-space: nowrap;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-#content .square-box::-webkit-scrollbar{
+#content .floor-box::-webkit-scrollbar{
   display: none;
 }
-#content .square-card{
-  margin: 10px;
-}
-#content .square-box .black-square{
+#content .black-square{
   cursor: pointer;
+  display: inline-block;
   background-color: #121212;
+  border: white solid 0.1px;
   width: 150px;
   height: 150px;
+  margin: 15px;
 }
 
 
@@ -136,4 +99,39 @@ a{
 }
 #content_selected #selected-content-button:active{
   filter: brightness(0.6);
+}
+
+
+#text {
+  height: 100dvh;
+  text-align: center;
+}
+#text .disc {
+  width: 20vh;
+  height: 20vh;
+  position: absolute;
+  display: block;
+  transform: translate(-50%, -50%);
+  border: solid white 0.1px;
+  text-align: center;
+  font-size: 18vh;
+}
+#text #text-cards div{
+  width: 80vw;
+  height: 80vh;
+  position: fixed;
+  z-index: 20;
+  background-color: #121212;
+  border: solid white 0.1px;
+  left: 10vw;
+  top: 10vh;
+  display: none;
+}
+#text #text-cards .close-button{
+  text-decoration: underline;
+  position: absolute;
+  cursor: pointer;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
 }

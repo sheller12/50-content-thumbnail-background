@@ -7,7 +7,7 @@ fetch("./components/hamburger.html")
   .then((data) => document.querySelector("#hamburger").innerHTML = data)
   .then(()=>{
     const menu_list = [
-      {name:"text",         path:"./text",            include:["text.html"]},
+      {name:"text",         path:"./text.html",       include:["text.html"]},
       {name:"content list", path:"./",                include:["", "index.html", "content_selected.html"]},
       {name:"minted",       path:"./minted.html",     include:["minted.html"]},
       {name:"exhibition",   path:"./exhibition.html", include:["exhibition.html"]},
@@ -232,81 +232,147 @@ const contents =[
     "floor":3,
   }
 ];
-if(currentPath==="/content.html"){
-  //検索欄
-  const contentsList = document.getElementById("contents-list");
-  contents.forEach((content) => {
-    const item = document.createElement("p");
-    item.innerText = content.name+":"+content.title;
-    item.classList.add("content-item");
-    item.addEventListener("mousedown", () => {
-      contentClicked(content);
-      console.log(contentsList.scrollTop);
-    });
-    contentsList.appendChild(item);
-  });
-  const searchBox = document.getElementById("search-box");
-  searchBox.addEventListener("focus", () => {
-    contentsList.scrollTop = 0;
-  });
-  function search(){
-    const contentsList = document.getElementById("contents-list");
-    const items = contentsList.children;
-    const phrase = document.getElementById("search-box").value;
-    Array.from(items).forEach((item) => {
-      if(item.innerText.indexOf(phrase)>=0) item.style.display = "block";
-      else item.style.display = "none";
-    })
-  }
-
+if(currentPath===""){
   //ブラックスクエアの設置
   const squareArea = document.getElementById("square-area");
   for(let i=1; i<=3; i++){
     const floorBox = document.createElement("div");
     floorBox.classList.add("floor-box");
-    const floorTitle = document.createElement("h2");
-    floorTitle.innerText = (i===1 && "1st floor") || (i===2 && "2nd floor") || (i===3 && "3rd floor");
-    floorTitle.setAttribute("id", "floor"+i);
-    floorBox.appendChild(floorTitle);
-    const squareBox = document.createElement("div");
-    squareBox.classList.add("square-box");
     const floorContents = contents.filter((content)=> content.floor===i);
     floorContents.forEach((content)=>{
-      const squareCard = document.createElement("div");
-      squareCard.classList.add("square-card");
-      const squareName = document.createElement("p");
-      squareName.innerText = content.name;
-      squareName.classList.add("square-name");
-      const squareIndex = document.createElement("span");
-      squareIndex.innerText = " ("+(contents.indexOf(content)+1)+")";
       const squareImg = document.createElement("div");
       squareImg.classList.add("black-square");
-      squareImg.addEventListener("click", () => contentClicked(content));
-      squareName.appendChild(squareIndex);
-      squareCard.appendChild(squareName);
-      squareCard.appendChild(squareImg);
-      squareBox.appendChild(squareCard);
+      const contentIndex = (contents.indexOf(content)+1).toString().padStart(3, "0");
+      squareImg.addEventListener("click", () => window.location.href = `./content_selected.html?index=${contentIndex}`);
+      floorBox.appendChild(squareImg);
     })
-    floorBox.appendChild(squareBox);
     squareArea.appendChild(floorBox);
-  }
-
-  //コンテンツ選択時の関数
-  function contentClicked(content){
-    window.location.href = `./content_selected.html?name=${content.name}&title=${content.title}`
   }
 }
 
 
 //content_selected page
-if(currentPath==="/content_selected.html"){
+if(currentPath==="content_selected.html"){
   const content_params = new URLSearchParams(window.location.search);
-  const name = document.getElementById("selected-content-name");
-  name.innerText = content_params.get("name");
   const title = document.getElementById("selected-content-title");
-  title.innerText = `『${content_params.get("title")}』`;
+  title.innerText = `50CTB #${content_params.get("index")}`;
 
   function toMintPage(){
     window.location.href = `./mint.html${window.location.search}`;
   }
+}
+
+
+
+//text page
+if(currentPath==="text.html"){
+  function pxToRatioX(px){
+    return px * 100 / document.documentElement.clientWidth;
+  }
+  function pxToRatioY(px){
+    return px * 100 / document.documentElement.clientHeight;
+  }
+  var discPos=[];
+  function locateDiscs(){
+    var discs = document.getElementsByClassName("disc");
+    if(!discPos[0]){
+      for(let i=0; i<discs.length; i++){
+        var discPosX = 50 + Math.random();
+        var discPosY = 25 + 18*i + Math.random();
+        discPos[i] = {"x":discPosX,"y":discPosY};
+      }
+    }
+    for(let i=0; i<discs.length; i++){
+      discs[i].id = i;
+      discs[i].onclick = ()=>{return false};
+      discs[i].style.left = discPos[i].x + "vw";
+      discs[i].style.top  = discPos[i].y + "dvh";
+    }
+  }
+  function enableDragging(){
+    var elements = document.getElementsByClassName("disc");
+    for(let i=0; i<elements.length; i++){
+      elements[i].style.zIndex = i + 10;
+    }
+    for(var i = 0; i < elements.length; i++) {
+      elements[i].addEventListener("mousedown", mdown, false);
+      elements[i].addEventListener("touchstart", mdown, false);
+    }
+    var relativeX;
+    var relativeY;
+    function mdown(e) {
+      this.classList.add("drag");
+      this.classList.add("click");
+      e.preventDefault();
+      for(let i=0; i<elements.length; i++){
+        if(elements[i].style.zIndex > this.style.zIndex) elements[i].style.zIndex -= 1;
+      }
+      this.style.zIndex = elements.length + 9;
+      document.body.addEventListener("mousemove", mmove, false);
+      document.body.addEventListener("touchmove", mmove, false);
+      document.body.addEventListener("mouseleave", mup, false);
+      document.body.addEventListener("touchleave", mup, false);
+      this.addEventListener("mouseup", mup, false);
+      this.addEventListener("touchend", mup, false);
+      relativeX = window.scrollX + this.getBoundingClientRect().left + this.clientWidth/2 - e.pageX;
+      relativeY = window.scrollY + this.getBoundingClientRect().top + this.clientHeight/2 - e.pageY;
+    }
+    function mmove(e) {
+      var drag = document.getElementsByClassName("drag")[0];
+      setTimeout(()=>{
+        drag.classList.remove("click");
+      },100);
+      if(!drag) return;
+      if(e.type === "mousemove") {
+          var event = e;
+      } else {
+          var event = e.changedTouches[0];
+      }
+      var limitedX = Math.min(Math.max(event.pageX + relativeX,  drag.clientWidth/2),  document.body.clientWidth-drag.clientWidth/2);
+      var limitedY = Math.min(Math.max(event.pageY + relativeY, drag.clientHeight/2), document.body.clientHeight-drag.clientHeight/2);
+      var ratioX = pxToRatioX(limitedX);
+      var ratioY = pxToRatioY(limitedY);
+      drag.style.left = ratioX + "vw";
+      drag.style.top = ratioY + "dvh";
+      discPos[parseInt(drag.id)].x = ratioX;
+      discPos[parseInt(drag.id)].y = ratioY;
+    }
+    function mup(e) {
+      var drag = document.getElementsByClassName("drag")[0];
+      if(!drag) return;
+      if(drag.classList.contains("click"))
+      {
+        drag.classList.remove("click");
+        const textCard = document.getElementById("text-"+(parseInt(drag.id)+1));
+        textCard.style.display = "block";
+      }
+      document.body.removeEventListener("mousemove", mmove, false);
+      document.body.removeEventListener("touchmove", mmove, false);
+      document.body.removeEventListener("mouseleave", mup, false);
+      document.body.removeEventListener("touchleave", mup, false);
+      drag.removeEventListener("mouseup", mup, false);
+      drag.removeEventListener("touchend", mup, false);
+      drag.classList.remove("drag");
+    }
+  };
+  function setUpTextCards(){
+    const textCards = document.getElementById("text-cards").children;
+    Array.from(textCards).forEach((card)=>{
+      document.addEventListener("mousedown", (e)=>{
+        if(!e.target.closest(`#${card.id}`)){
+          card.style.display="none";
+        }
+      });
+      const closeButton = document.createElement("p");
+      closeButton.innerText = "閉じる";
+      closeButton.classList.add("close-button");
+      closeButton.addEventListener("click", ()=>{
+        card.style.display="none";
+      })
+      card.appendChild(closeButton);
+    })
+  }
+  locateDiscs();
+  enableDragging();
+  setUpTextCards();
 }
