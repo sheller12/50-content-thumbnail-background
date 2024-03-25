@@ -344,7 +344,7 @@ if(currentPath==="text.html"){
       {
         drag.classList.remove("click");
         const textCard = document.getElementById("text-"+(parseInt(drag.id)+1));
-        textCard.style.display = "block";
+        textCard.style.top = "10vh";
       }
       document.body.removeEventListener("mousemove", mmove, false);
       document.body.removeEventListener("touchmove", mmove, false);
@@ -360,14 +360,14 @@ if(currentPath==="text.html"){
     Array.from(textCards).forEach((card)=>{
       document.addEventListener("mousedown", (e)=>{
         if(!e.target.closest(`#${card.id}`)){
-          card.style.display="none";
+          card.style.top = "-100vh";
         }
       });
       const closeButton = document.createElement("p");
       closeButton.innerText = "閉じる";
       closeButton.classList.add("close-button");
       closeButton.addEventListener("click", ()=>{
-        card.style.display="none";
+        card.style.top = "-100vh";
       })
       card.appendChild(closeButton);
     })
