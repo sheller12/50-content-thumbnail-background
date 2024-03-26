@@ -97,7 +97,6 @@
   margin-bottom: 0px;
   font-weight: lighter;
 }
-
 .loading span {
   position: relative;
   display: inline-block;
@@ -105,7 +104,6 @@
   color: pink;
   animation: loading-parent 5s infinite;
 }
-
 .loading span::after {
   position: absolute;
   top: 0;
@@ -115,31 +113,24 @@
   opacity: 0;
   animation: loading-child 5s infinite;
 }
-
 .loading span:nth-child(2)::after {
   animation-delay: .2s;
 }
-
 .loading span:nth-child(3)::after {
   animation-delay: .4s;
 }
-
 .loading span:nth-child(4)::after {
   animation-delay: .6s;
 }
-
 .loading span:nth-child(5)::after {
   animation-delay: .8s;
 }
-
 .loading span:nth-child(6)::after {
   animation-delay: 1s;
 }
-
 .loading span:nth-child(7)::after {
   animation-delay: 1.2s;
 }
-
 @keyframes loading-parent {
 
   0%,
@@ -153,7 +144,6 @@
     color: black;
   }
 }
-
 @keyframes loading-child {
   0% {
     opacity: 1;
@@ -164,7 +154,6 @@
     opacity: 0;
   }
 }
-
 .colorful {
   height: 100vh;
   width: 100%;
@@ -172,7 +161,6 @@
   background-size: 200% 200%;
   animation: bggradient 10.5s ease infinite;
 }
-
 @keyframes bggradient {
   0% {
     background-position: 0% 50%;
@@ -186,8 +174,7 @@
     background-position: 0% 50%;
   }
 }
-
-.slider {
+#korokoro {
   position: relative;
   top: 48%;
   margin-right: -55%;
@@ -199,12 +186,10 @@
   -webkit-perspective: 360px;
   perspective: 360px;
 }
-
-.slider * {
+#korokoro * {
   -webkit-transition: all 15s cubic-bezier(1, -0.75, 0.5, 1.5);
   transition: all 15s cubic-bezier(1 -0.75, 0.5, 1.5);
 }
-
 .container {
   width: inherit;
   height: inherit;
@@ -213,8 +198,7 @@
   -webkit-transform: rotateY(0.1deg) rotateX(0.1deg);
   transform: rotateY(0.1deg) rotateX(0.1deg);
 }
-
-.slider div {
+#korokoro div {
   display: block;
   width: inherit;
   height: inherit;
@@ -222,38 +206,32 @@
   background-size: cover;
   background-position: center;
 }
-
-.slider .up {
+#korokoro .up {
   background-image: url('../assets/korokoro/korokoro2.png');
   -webkit-transform: rotateY(89.9deg) translateZ(65px);
   transform: rotateY(89.9deg) translateZ(65px);
 }
-
-.slider .bottom {
+#korokoro .bottom {
   background-image: url('../assets/korokoro/korokoro3.png');
   -webkit-transform: rotateY(89.9deg) translateZ(-65px);
   transform: rotateY(89.9deg) translateZ(-65px);
 }
-
-.slider .left {
+#korokoro .left {
   background-image: url('../assets/korokoro/korokoro4.png');
   -webkit-transform: rotateX(-89.9deg) translateZ(-65px);
   transform: rotateX(-89.9deg) translateZ(-65px);
 }
-
-.slider .right {
+#korokoro .right {
   background-image: url('../assets/korokoro/korokoro5.png');
   -webkit-transform: rotateX(89.9deg) translateZ(-65px);
   transform: rotateX(89.9deg) translateZ(-65px);
 }
-
-.slider .front {
+#korokoro .front {
   background-image: url('../assets/korokoro/korokoro6.png');
   -webkit-transform: translateZ(65px);
   transform: translateZ(65px);
 }
-
-.slider .back {
+#korokoro .back {
   background-image: url('../assets/korokoro/korokoro7.png');
   -webkit-transform: translateZ(-65px);
   transform: translateZ(-65px);
@@ -263,8 +241,6 @@
   -webkit-animation: rotate 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
   animation: rotate 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
 }
-
-
 @keyframes rotate {
 
   0%,
@@ -314,7 +290,6 @@
     transform: rotateY(0.1deg) rotateX(0.1deg);
   }
 }
-
 .shadow {
   display: block;
   width: 130px;
@@ -334,7 +309,6 @@
   -webkit-animation: rotateShadow 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
   animation: rotateShadow 15s infinite cubic-bezier(1, -0.75, 0.5, 1.2);
 }
-
 @keyframes rotateShadow {
 
   0%,
@@ -401,6 +375,11 @@
     transform: rotateY(0.1deg) rotateX(89.9deg);
   }
 }
+
+
+
+
+
 
 
 
