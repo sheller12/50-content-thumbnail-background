@@ -53,21 +53,46 @@ hr{
   width: 150px;
   height: 150px;
   margin: 15px;
-  animation: emboss 12s infinite;
+  animation: 2.8s emboss1, 7.2s 2.8s emboss2 infinite;
 }
-@keyframes emboss {
-  88% {
+@keyframes emboss1 {
+  0% {
     box-shadow:none;
   }
   90% {
+    box-shadow:none;
+  }
+  91% {
     box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
   }
-  92% {
+  99% {
     box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
   }
   100% {
     box-shadow:none;
   }
+}
+@keyframes emboss2 {
+  0% {
+    box-shadow:none;
+  }
+  97% {
+    box-shadow:none;
+  }
+  98% {
+    box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
+  }
+  99% {
+    box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
+  }
+  100% {
+    box-shadow:none;
+  }
+}
+.rainbow{
+  border: 0.1px solid blue;
+  border-image-slice: 1;
+  border-image-source: conic-gradient(from 0deg, hsl(0 100% 50%), hsl(45 100% 50%), hsl(90 100% 50%), hsl(135 100% 50%), hsl(180 100% 50%), hsl(225 100% 50%), hsl(270 100% 50%), hsl(315 100% 50%), hsl(360 100% 50%));
 }
 
 

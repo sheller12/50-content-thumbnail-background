@@ -236,17 +236,27 @@ if(currentPath==="" || currentPath==="index.html"){
   //ブラックスクエアの設置
   const squareArea = document.getElementById("square-area");
   for(let i=1; i<=3; i++){
+    let blackSquares=[];
     const floorBox = document.createElement("div");
     floorBox.classList.add("floor-box");
     const floorContents = contents.filter((content)=> content.floor===i);
     floorContents.forEach((content)=>{
       const squareImg = document.createElement("div");
       squareImg.classList.add("black-square");
+      blackSquares.push(squareImg);
       const contentIndex = (contents.indexOf(content)+1).toString().padStart(4, "0");
       squareImg.addEventListener("click", () => window.location.href = `./content_selected.html?index=${contentIndex}`);
       floorBox.appendChild(squareImg);
     })
     squareArea.appendChild(floorBox);
+    floorBox.addEventListener("scroll", ()=>{
+      blackSquares.forEach((blackSquare)=>{
+        blackSquare.classList.add("rainbow");
+        blackSquare.style.borderImageSource = `conic-gradient(from ${(floorBox.scrollLeft + Math.random())*100}deg, hsl(0 100% 50%), hsl(45 100% 50%), hsl(90 100% 50%), hsl(135 100% 50%), hsl(180 100% 50%), hsl(225 100% 50%), hsl(270 100% 50%), hsl(315 100% 50%), hsl(360 100% 50%))`;
+        console.log(floorBox.scrollLeft);
+        setTimeout(()=>blackSquare.classList.remove("rainbow"), 500);
+      });
+    })
   }
 }
 
