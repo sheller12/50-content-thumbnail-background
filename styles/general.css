@@ -13,9 +13,6 @@ hr{
   height: 1px;
   border-width: 0;
 }
-a{
-  color: #1976d2;
-}
 
 
 #home{
@@ -29,6 +26,9 @@ a{
 }
 #home .top{
   color: #FF91A4;
+}
+#home a{
+  color: #1976d2;
 }
 
 
@@ -53,7 +53,7 @@ a{
   width: 150px;
   height: 150px;
   margin: 15px;
-  box-shadow:1px 1px 2px #202020, -1px -1px 2px #040404;
+  box-shadow:1px 1px 2px #222222, -1px -1px 2px #020202;
 }
 
 
@@ -100,12 +100,13 @@ a{
 #text .disc {
   width: 20dvh;
   height: 20dvh;
+  cursor: pointer;
   position: absolute;
   display: block;
   transform: translate(-50%, -50%);
   border: solid white 0.1px;
   text-align: center;
-  font-size: 18vh;
+  font-size: 18dvh;
 }
 #text #text-cards div{
   width: 80vw;
@@ -125,4 +126,20 @@ a{
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+
+
+#exhibition {
+  text-align: center;
+}
+#exhibition a {
+  color: #333333;
+}
+#exhibition button{
+  /* background: transparent; */
+  border: none;
+  outline: none;
+  box-shadow: none;
+  color: #5E5E5E;
 }
