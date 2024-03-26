@@ -380,27 +380,23 @@ if(currentPath==="text.html"){
 
 //exhibition page
 if(currentPath==="exhibition.html"){
-  const images = [
-    "./assets/korokoro/korokoro2.png",
-    "./assets/korokoro/korokoro3.png",
-    "./assets/korokoro/korokoro4.png",
-    "./assets/korokoro/korokoro5.png",
-  ]
   let currentImg = 0;
+  const imgs = document.getElementById("slide_imgs").children;
   const img = document.getElementById("slide_img");
   const button_l = document.getElementById("slide_button_l");
   const button_r = document.getElementById("slide_button_r");
   button_l.disabled = true;
+  img.src = imgs[currentImg].src;
   button_l.addEventListener("click", ()=>{
     currentImg -= 1;
-    img.src = images[currentImg];
+    img.src = imgs[currentImg].src;
     button_r.disabled = false;
     if(currentImg===0) button_l.disabled = true;
   });
   button_r.addEventListener("click", ()=>{
     currentImg += 1;
-    img.src = images[currentImg];
+    img.src = imgs[currentImg].src;
     button_l.disabled = false;
-    if(currentImg===images.length-1) button_r.disabled = true;
+    if(currentImg===imgs.length-1) button_r.disabled = true;
   });
 }

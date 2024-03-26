@@ -424,3 +424,6 @@
 #slider #slide_button_r{
   right: 0px;
 }
+#slider #slide_imgs{
+  display: none;
+}
