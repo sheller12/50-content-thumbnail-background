@@ -27,12 +27,12 @@
             async function displayNFT() {
                 const contractABI = await loadABI();
                 const provider = new ethers.providers.JsonRpcProvider('https://sepolia.infura.io/v3/166fa3643f7f44c48dbfcf09ebc2ff46');
-                const contractAddress = '0xc13a7170626AFeb397D5f1c4a77D5628F69D01d5';
+                const contractAddress = '0xe0385A39AB32911f267541c2E2C64DEc2050EEFc';
                 const contract = new ethers.Contract(contractAddress, contractABI, provider);
                 const squareArea = document.getElementById('square-area');
 
-                const currentTokenId = await contract.currentTokenId();
-                const statuses = await contract.batchMintable(currentTokenId);
+                const _currentTokenId = await contract._currentTokenId();
+                const statuses = await contract.batchMintable(_currentTokenId);
 
                 for (let i = 0; i < statuses.length; i++) {
                     const tokenId = i + 1; // トークンIDは1から開始
