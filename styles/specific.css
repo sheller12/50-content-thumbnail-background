@@ -389,7 +389,7 @@
 #slider button{
   width: 35%;
   position: absolute;
-  height: 40vw;
+  height: 50vw;
   max-height: 300px;
   font-size: 20px;
   color: #333333;
@@ -411,6 +411,6 @@
   display: none;
 }
 #slider #slide_img{
-  width: 40vw;
+  width: 50vw;
   max-width: 300px;
 }
