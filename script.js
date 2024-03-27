@@ -249,7 +249,7 @@ if(currentPath==="" || currentPath==="index.html"){
       floorBox.appendChild(squareImg);
     })
     squareArea.appendChild(floorBox);
-    var previousScroll;
+    let previousScroll;
     floorBox.addEventListener("scroll", ()=>{
       let scrollSpeed = Math.abs(floorBox.scrollLeft - previousScroll);
       previousScroll = floorBox.scrollLeft;
