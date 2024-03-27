@@ -379,6 +379,35 @@
 
 
 
+#content .black-square{
+  cursor: pointer;
+  display: inline-block;
+  background-color: #121212;
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+  animation: 7.2s emboss infinite;
+}
+@keyframes emboss {
+  20% {
+    box-shadow:none;
+  }
+  21% {
+    box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
+  }
+  23% {
+    box-shadow:1px 1px 2px #242424, -1px -1px 2px #000000;
+  }
+  24% {
+    box-shadow:none;
+  }
+}
+.shine {
+  border: 0.1px solid transparent;
+  border-image-slice: 1;
+}
+
+
 
 
 
