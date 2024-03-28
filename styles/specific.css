@@ -90,6 +90,35 @@
 
 
 
+.first-statement {
+  position: fixed;
+  top: 30vh;
+  left: 10vw;
+  width: 80vw;
+  background-color: #121212;
+  z-index: 1000;
+  padding: 10px;
+  border: solid 0.1px #333333;
+  font-family: "Zen Kaku Gothic New";
+  text-align: left;
+}
+.first-statement label p{
+  text-align: center;
+  cursor: pointer;
+  width: fit-content;
+  margin: auto;
+}
+.first-statement #first-statement-check {
+  display: none;
+}
+.first-statement:has(#first-statement-check:checked) {
+  display: none;
+}
+
+
+
+
+
 
 .loading {
   font-size: 50px;

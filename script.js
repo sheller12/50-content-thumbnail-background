@@ -27,7 +27,23 @@ fetch("./components/hamburger.html")
   });
 
 
-//contents page　一つ前との差に
+
+  // first statement
+if(!sessionStorage.getItem('disp_popup')) {
+  sessionStorage.setItem('disp_popup', 'on');
+  let firstStatement;
+  fetch("./components/first_statement.html")
+  .then((response) => response.text())
+  .then((data) => {
+    firstStatement = document.createElement("div");
+    firstStatement.innerHTML = data;
+    console.log(data);
+  })
+  .then(() => document.body.appendChild(firstStatement))
+}
+
+
+//contents page
 const contents =[
   { "name":"1A",
     "title":"神隠し",
